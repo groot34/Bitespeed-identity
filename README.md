@@ -9,6 +9,7 @@ A backend service that links different contact details (email, phone number) of 
 - [Local Development Setup](#local-development-setup)
 - [NeonDB Setup for Production](#neondb-setup-for-production)
 - [Deploying to Render.com](#deploying-to-rendercom)
+- [API Documentation (Swagger)](#api-documentation-swagger)
 - [API Endpoints](#api-endpoints)
 - [Example curl Requests](#example-curl-requests)
 - [Hosted Endpoint](#hosted-endpoint)
@@ -80,6 +81,23 @@ A backend service that links different contact details (email, phone number) of 
    | `DATABASE_URL` | Your NeonDB connection string  |
    | `NODE_ENV`     | `production`                   |
 6. Click **Deploy**.
+
+---
+
+## API Documentation (Swagger)
+
+This project includes interactive API documentation powered by **Swagger UI**.
+
+Once the server is running, open your browser and navigate to:
+
+```
+http://localhost:3000/api-docs
+```
+
+From the Swagger UI you can:
+- View full request/response schemas for every endpoint
+- Try out API calls directly from the browser using the **"Try it out"** button
+- Switch between multiple request examples (new contact, email-only, phone-only, merge)
 
 ---
 
@@ -184,13 +202,14 @@ https://your-app.onrender.com/identify
 
 ## Tech Stack
 
-| Layer      | Technology                       |
-| ---------- | -------------------------------- |
-| Runtime    | Node.js                          |
-| Language   | TypeScript (strict mode)         |
-| Framework  | Express.js                       |
-| DB (dev)   | PostgreSQL via `pg`              |
-| DB (prod)  | NeonDB via `@neondatabase/serverless` |
+| Layer      | Technology                              |
+| ---------- | --------------------------------------- |
+| Runtime    | Node.js                                 |
+| Language   | TypeScript (strict mode)                |
+| Framework  | Express.js                              |
+| DB (dev)   | PostgreSQL via `pg`                     |
+| DB (prod)  | NeonDB via `@neondatabase/serverless`   |
+| API Docs   | Swagger UI (`swagger-ui-express` + `swagger-jsdoc`) |
 
 ---
 
