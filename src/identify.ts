@@ -151,7 +151,7 @@ export async function identifyContact(
 
         // Build from the surviving primary using the shared query helper
         return buildResponse(keepPrimary.id, (text, params) =>
-          client.query(text, params).then((r) => ({ rows: r.rows as Record<string, unknown>[] }))
+          client.query(text, params).then((r: { rows: Record<string, unknown>[] }) => ({ rows: r.rows as Record<string, unknown>[] }))
         );
       }
 
@@ -168,8 +168,8 @@ export async function identifyContact(
 
       const cluster = clusterRows.map((r: Record<string, unknown>) => rowToContact(r));
 
-      const existingEmails = new Set(cluster.map((c) => c.email).filter(Boolean));
-      const existingPhones = new Set(cluster.map((c) => c.phoneNumber).filter(Boolean));
+      const existingEmails = new Set(cluster.map((c: Contact) => c.email).filter(Boolean));
+      const existingPhones = new Set(cluster.map((c: Contact) => c.phoneNumber).filter(Boolean));
 
       const emailIsNew = emailVal !== null && !existingEmails.has(emailVal);
       const phoneIsNew = phoneVal !== null && !existingPhones.has(phoneVal);
@@ -178,7 +178,7 @@ export async function identifyContact(
       if (!emailIsNew && !phoneIsNew) {
         await client.query("COMMIT");
         return buildResponse(thePrimary.id, (text, params) =>
-          client.query(text, params).then((r) => ({ rows: r.rows as Record<string, unknown>[] }))
+          client.query(text, params).then((r: { rows: Record<string, unknown>[] }) => ({ rows: r.rows as Record<string, unknown>[] }))
         );
       }
 
@@ -193,7 +193,7 @@ export async function identifyContact(
       await client.query("COMMIT");
 
       return buildResponse(thePrimary.id, (text, params) =>
-        client.query(text, params).then((r) => ({ rows: r.rows as Record<string, unknown>[] }))
+        client.query(text, params).then((r: { rows: Record<string, unknown>[] }) => ({ rows: r.rows as Record<string, unknown>[] }))
       );
     } catch (err) {
       await client.query("ROLLBACK");
