@@ -73,7 +73,7 @@ A backend service that links different contact details (email, phone number) of 
    ```
 4. Set the **Start Command**:
    ```
-   npm start
+   npm run dev
    ```
 5. Add **Environment Variables**:
    | Variable       | Value                          |
